@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/characters_nav_graph"
+    app:startDestination="@id/fragmentCharacterSearch">
+
+    <fragment
+        android:id="@+id/fragmentCharacterSearch"
+        android:name="com.starwars.charactersearch.presentation.charactersearch.FragmentCharacterSearch"
+        android:label="FragmentCharacterSearch" >
+        <action
+            android:id="@+id/action_fragmentCharacterSearch_to_fragmentCharacterDetails"
+            app:destination="@id/fragmentCharacterDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentCharacterDetails"
+        android:name="com.starwars.charactersearch.presentation.characterdetails.FragmentCharacterDetails"
+        android:label="FragmentCharacterDetails" >
+        <argument
+            android:name="CharacterModel"
+            app:argType="com.starwars.domain.entities.CharacterModel" />
+    </fragment>
+</navigation>

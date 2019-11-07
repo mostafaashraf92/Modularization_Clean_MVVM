@@ -1,0 +1,2 @@
+include ':app',':core', ':character_feature', ':data', ':domain', ':test_module'
+rootProject.name='TrivagoAssi'

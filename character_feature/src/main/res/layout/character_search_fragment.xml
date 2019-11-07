@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.starwars.domain.entities.CharacterModel" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.starwars.charactersearch.presentation.charactersearch.CharacterSearchViewModel" />
+
+        <variable
+            name="listener"
+            type="com.starwars.core.interfaces.IOnCharacterClickedListener&lt;CharacterModel&gt;" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="12dp"
+        tools:context=".presentation.charactersearch.FragmentCharacterSearch">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_query"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/searchImgView"
+            android:hint="Search for characters"
+            android:textColor="#000"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/searchImgView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:clickable="true"
+            android:src="@drawable/ic_search_black_24dp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/charactersRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_query"
+            android:layout_marginTop="10dp"
+            app:setItemClickListener="@{listener}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="No characters found"
+            android:textSize="25sp"
+            android:visibility="@{ viewModel.showEmptyListMessage ? View.VISIBLE : View.GONE}" />
+
+    </RelativeLayout>
+</layout>
