@@ -1,5 +1,6 @@
-package com.starwars.data.datasource
+package com.starwars.charactersearch.presentation.charactersearch.data.source
 
+import com.starwars.domain.entities.CharacterSearchModel
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET
@@ -9,5 +10,5 @@ interface CharacterSearchApi {
 
     @GET("people/?")
     fun getCharactersAsync(@Query("search") query: String?)
-            : Deferred<Response<com.starwars.domain.entities.CharacterSearchModel?>>
+            : Deferred<Response<CharacterSearchModel?>>
 }

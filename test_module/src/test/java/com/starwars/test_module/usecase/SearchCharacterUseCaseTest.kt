@@ -1,9 +1,12 @@
 package com.starwars.core.domain.usecase
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.starwars.domain.entities.CharacterModel
 import com.starwars.domain.entities.CharacterSearchModel
 import com.starwars.domain.entities.ErrorModel
 import com.starwars.domain.entities.Output
+import com.starwars.domain.repository.CharacterSearchRepo
+import com.starwars.domain.usecase.SearchCharacterUseCase
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
@@ -24,12 +27,12 @@ class SearchCharacterUseCaseTest {
     fun searchForCharactersSuccess() {
         runBlocking {
 
-            val repo = mockk<com.starwars.domain.repository.CharacterSearchRepo>()
+            val repo = mockk<CharacterSearchRepo>()
             every { runBlocking { repo.searchForCharacter(any()) } } returns Output.Success<CharacterSearchModel>(
                 constructCharacterSearchModel()
             )
 
-            var useCase = com.starwars.domain.usecase.SearchCharacterUseCase(repo)
+            var useCase = SearchCharacterUseCase(repo)
             val expected =
                 useCase.searchForCharacters("") as Output.Success<CharacterSearchModel?>
             Assert.assertNotNull(expected)
@@ -42,12 +45,12 @@ class SearchCharacterUseCaseTest {
     fun searchForCharactersError() {
         runBlocking {
 
-            val repo = mockk<com.starwars.domain.repository.CharacterSearchRepo>()
+            val repo = mockk<CharacterSearchRepo>()
             every { runBlocking { repo.searchForCharacter(any()) } } returns Output.Error(
                 constructErrorModel()
             )
 
-            var useCase = com.starwars.domain.usecase.SearchCharacterUseCase(repo)
+            var useCase = SearchCharacterUseCase(repo)
             val expected =
                 useCase.searchForCharacters("") as Output.Error
             Assert.assertNotNull(expected.exception)
@@ -56,7 +59,7 @@ class SearchCharacterUseCaseTest {
     }
 
     private fun constructCharacterSearchModel(): CharacterSearchModel {
-        var characterModel1 = com.starwars.domain.entities.CharacterModel(
+        var characterModel1 = CharacterModel(
             "mostafa",
             "198",
             "",
@@ -67,7 +70,7 @@ class SearchCharacterUseCaseTest {
             null,
             null
         )
-        var characterModel2 = com.starwars.domain.entities.CharacterModel(
+        var characterModel2 = CharacterModel(
             "jack",
             "180",
             "",
@@ -78,14 +81,14 @@ class SearchCharacterUseCaseTest {
             null,
             null
         )
-        var arrayList = ArrayList<com.starwars.domain.entities.CharacterModel>()
+        var arrayList = ArrayList<CharacterModel>()
         arrayList.add(characterModel1)
         arrayList.add(characterModel2)
         return CharacterSearchModel(2, arrayList)
     }
 
     private fun constructErrorModel(): ErrorModel {
-        return com.starwars.domain.entities.ErrorModel("500", "error")
+        return ErrorModel("500", "error")
     }
 
 }

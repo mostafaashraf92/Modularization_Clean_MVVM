@@ -53,6 +53,9 @@ dependencies {
     api "org.koin:koin-core-ext:$koin_version"
     api "androidx.navigation:navigation-fragment-ktx:$nav_version"
     api "androidx.navigation:navigation-ui-ktx:$nav_version"
+    api "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofitCoroutinesAdapterVersion"
+    api 'com.squareup.retrofit2:retrofit:2.6.0'
+    api 'com.squareup.retrofit2:converter-gson:2.6.0'
     testImplementation "io.mockk:mockk:1.9.3"
     testImplementation "android.arch.core:core-testing:1.1.1"
     testImplementation "org.koin:koin-test:$koin_version"

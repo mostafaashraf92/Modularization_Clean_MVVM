@@ -2,7 +2,9 @@ package com.starwars.test_module.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.starwars.charactersearch.presentation.charactersearch.CharacterSearchViewModel
+import com.starwars.domain.entities.CharacterModel
 import com.starwars.domain.entities.CharacterSearchModel
+import com.starwars.domain.entities.ErrorModel
 import com.starwars.domain.entities.Output
 import com.starwars.domain.usecase.SearchCharacterUseCase
 import io.mockk.every
@@ -41,7 +43,7 @@ class CharacterSearchViewModelTest {
     }
 
     private fun constructCharacterSearchModel(): CharacterSearchModel {
-        var characterModel1 = com.starwars.domain.entities.CharacterModel(
+        var characterModel1 = CharacterModel(
             "mostafa",
             "198",
             "",
@@ -52,7 +54,7 @@ class CharacterSearchViewModelTest {
             null,
             null
         )
-        var characterModel2 = com.starwars.domain.entities.CharacterModel(
+        var characterModel2 = CharacterModel(
             "jack",
             "180",
             "",
@@ -63,14 +65,14 @@ class CharacterSearchViewModelTest {
             null,
             null
         )
-        var arrayList = ArrayList<com.starwars.domain.entities.CharacterModel>()
+        var arrayList = ArrayList<CharacterModel>()
         arrayList.add(characterModel1)
         arrayList.add(characterModel2)
         return CharacterSearchModel(2, arrayList)
     }
 
-    private fun constructErrorModel(): com.starwars.domain.entities.ErrorModel {
-        return com.starwars.domain.entities.ErrorModel("500", "error")
+    private fun constructErrorModel(): ErrorModel {
+        return ErrorModel("500", "error")
     }
 
 }

@@ -1,5 +1,6 @@
-package com.starwars.data.datasource
+package com.starwars.charactersearch.presentation.characterdetails.planets.data.source
 
+import com.starwars.domain.entities.PlanetModel
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET
@@ -9,6 +10,6 @@ interface CharacterPlanetApi {
 
     @GET
     fun  getDetailsAsync(@Url url: String?)
-            : Deferred<Response<com.starwars.domain.entities.PlanetModel?>>
+            : Deferred<Response<PlanetModel?>>
 
 }

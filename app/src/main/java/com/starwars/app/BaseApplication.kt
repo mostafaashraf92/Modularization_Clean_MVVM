@@ -1,12 +1,11 @@
 package com.starwars.app
 
 import android.app.Application
+import com.starwars.charactersearch.characterFeatureData
 import com.starwars.charactersearch.characterFeatureUiModule
-import com.starwars.charactersearch.repositoryModule
 import com.starwars.charactersearch.useCaseModule
 import com.starwars.charactersearch.viewModelModule
 import com.starwars.core.di.coreModules
-import di.dataSourceModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -24,9 +23,8 @@ class BaseApplication : Application() {
                 listOf(
                     characterFeatureUiModule,
                     coreModules,
-                    dataSourceModule,
+                    characterFeatureData,
                     useCaseModule,
-                    repositoryModule,
                     viewModelModule
                 )
             )
